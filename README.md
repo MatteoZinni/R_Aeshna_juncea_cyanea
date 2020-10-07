@@ -12,5 +12,5 @@ The southern hawker or blue hawker (Aeshna cyanea) is a species of hawker dragon
 # Material and methods
 * R Studio verion: 3.6.3
 * Packages: 
-    * occurences download: [```spocc```](//github.com/https://cran.r-project.org/web/packages/spocc/spocc.pdf)
-    * data cleaning: [```CoordinateCleaner```](//github.com/https://cran.r-project.org/web/packages/CoordinateCleaner/CoordinateCleaner.pdf)
+    * occurences download: [```spocc```](https://cran.r-project.org/web/packages/spocc/spocc.pdf)
+    * data cleaning: [```CoordinateCleaner```](https://cran.r-project.org/web/packages/CoordinateCleaner/CoordinateCleaner.pdf)
