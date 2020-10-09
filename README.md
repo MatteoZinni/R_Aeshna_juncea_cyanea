@@ -76,7 +76,7 @@ Only the following variable of the original [Darwin Core](https://dwc.tdwg.org/)
 Data extraction from rasters has been carryed over using the ```raster``` function on previously loaded data. Bioclimatic variables are derived from the monthly temperature and rainfall values in order to generate more biologically meaningful variables (30 arc-seconds spatial resolution - Km<sup>2</sup>). Land cover (100 m spatial resolution  comes from the 2018 Corine Land Cover. CLC is referring to a European programme establishing a computerised inventory on land cover of the 27 EC member states and other European countries.
 
 ## Feature engineering and data editing
-To better describe the ecology of the two species some variables have been edite/engineered 
+To better describe the ecology of the two species some variables have been edited/engineered:
 * **Aridity index** (```ai```): the aridity index has been calculated using the formula proposed by De Martonne. The index values have been splitted according climate type (```ai_climate```).
 * **CLC value**: the value of the Corine Land Cover habitat has been converted according land cover type (```CLC_hab```).
 * **Flight season**(```season```): to describe occurrences within monthly observations, days (```day```) have been grouped according period frome the ealiest to the latest week of the month.
