@@ -7,16 +7,13 @@
 - [2.0.0 Material and methods](#Material-and-methods)
 - [3.0.0 The dataset](#The-dataset)
 - [3.1.0 Data cleaning](#Data-cleaning)
-- [3.1.1 Coordinates](#Coordinates)
-- [3.1.2 Geographical region](#Geographical-region)
-- [3.1.2 Selecting variables](#Selecting-variables)
+    - [3.1.1 Coordinates](#Coordinates)
+    - [3.1.2 Geographical region](#Geographical-region)
+    - [3.1.2 Selecting variables](#Selecting-variables)
 - [4.1.0 Data extraction](#Data-extraction)
 - [4.1.0 Feature engineering and data editing](#Feature-engineering-and-data-editing) 
 - [5.1.0 Exploratory data analysis](#Exploratory-data-analysis) 
 <!--te-->
-
-
-
 
 ## Project overview
 * Classify two dragonfly species (Aeshna cyanea, Aeshna juncea) using three supervised learning strategies and a set of environmental feaures used as predictors.
@@ -82,7 +79,8 @@ Data extraction from rasters has been carryed over using the ```raster``` functi
 To better describe the ecology of the two species some variables have been edite/engineered 
 * **Aridity index** (```ai```): the aridity index has been calculated using the formula proposed by De Martonne. The index values have been splitted according climate type (```ai_climate```).
 * **CLC value**: the value of the Corine Land Cover habitat has been converted according land cover type (```CLC_hab```).
-* **Flight season**: to describe occurrences along months days (```day```) have been grouped accoridng different levels frome the ealiest to the laste week of the month.
+* **Flight season**(```season```): to describe occurrences within monthly observations, days (```day```) have been grouped according period frome the ealiest to the latest week of the month.
 * **Month**: this variable (```month```) has been converted from numerical to factor (```Month```) to look at frequency of occurrences along time.
 
 ## Exploratory data analysis
+#### Summary statistics
