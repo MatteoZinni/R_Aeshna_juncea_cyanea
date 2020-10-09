@@ -2,12 +2,22 @@
 
 ## Table of contents
 <!--ts-->
-* [1.0.0 Project overview](#Project-overview)
-* [1.1.0 Introduction](#Introduction)
-* [1.2.0 Material and methods](#Material-and-methods)
-* [2.0.0 The dataset](#The-dataset)
-* [3.0.0 Data cleaning](#Data-cleaning)
+- [1.0.0 Project overview](#Project-overview)
+- [1.1.0 Introduction](#Introduction)
+- [2.0.0 Material and methods](#Material-and-methods)
+- [3.0.0 The dataset](#The-dataset)
+- [3.1.0 Data cleaning](#Data-cleaning)
+- [3.1.1 Coordinates](#Coordinates)
+- [3.1.2 Geographical region](#Geographical-region)
+- [3.1.2 Selecting variables](#Selecting-variables)
+- [4.1.0 Data extraction](#Data-extraction)
+- [4.1.0 Feature engineering and data editing](#Feature-engineering-and-data-editing) 
+- [5.1.0 Exploratory data analysis](#Exploratory-data-analysis) 
 <!--te-->
+
+
+
+
 ## Project overview
 * Classify two dragonfly species (Aeshna cyanea, Aeshna juncea) using three supervised learning strategies and a set of environmental feaures used as predictors.
 * Verify if the two species distribution overlaps or can potentially share the same habitats.
