@@ -32,11 +32,16 @@
 * Linear discriminant analysis, logistic regression and random forest algorhytm to look for the best classification algorhytm
 
 ## Findings
+The random forest algorhytms has been use to successfully discriminate two dragonfly spieces according a set of climatic variables derived from raster data. The most influent variable is ```maxtwam``` and it is quite well explanatory of the ecology of the two species. *A cyanea* show a more termophilous ecology nd since the ```elevation``` parameter have been discarderd an increase of the temperature with the reduction of the thermal differences may cause the two species to compete.
 
+<p float="center">
+<img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_rf_important_var.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_rf_important_var.png" width="500" height="500" /> 
+    
+<img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_maxtwam_kernel.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_maxtwam_kernel.png" width="400" height="400" />        
+</p>    
 
 ## Introduction
-The southern hawker or blue hawker (Aeshna cyanea) is a species of hawker dragonfly. The species is one of the most common and most widespread dragonflies in Europe. The total range is West Palearctic and covers a large part of Europe (to Scotland and southern Scandinavia in the North to Italy (without the Southwest) and the northern Balkans to the South); the Eastern boundary is formed by the Ural and the West by Ireland. It is also found in Northwest Africa (Algeria). In Central Europe the species is very common
-(since the alogtyhtm peromofrs weel they can be tested on more species to asses also conservations status and potential risk and addressing to cinservation soultion)
+The southern hawker or blue hawker (*Aeshna cyanea*) is a large and gaudy hawker, its dark body inlaid with birght nuggets of apple-green and sky-blue. These dragonflies mainly inhabit well-vegetated, small ponds and garden ponds, but they wander widely, and they are often seen in gardens and open woodland. The common hawker (*Aeshna juncea*) can be considered the archetypal hawker, large and dark, marked with yellow to bluish spots and bands. Its habitat is largerly restricted to acidic heathy lakes but can be found in most  types of standing water at higher altitude. 
 
 ## Material and methods
 * R Studio verion: 3.6.3
@@ -197,10 +202,38 @@ Model accuracy in predicting the right species have been tested on the train dat
 |```ai```      |Aridity index values according De Martonne  |
 
 ## Model accuracy
-Since accuracy values for all alrogrhytms are greater than 0.75 all model can be considered suitable to solve the classification problem. The random *forest algorythm* turns to be the best among the three into correctly discriminate the two species performing with an overall accuracy of 0.93 on the test data. According the plot the most important variable is ```maxtwam```. Its weight into discriminating the two species is considerable as reported in the plot below
+Since accuracy values for all alrogrhytms are greater than 0.75 all model can be considered suitable to solve the classification problem. 
 
 | Algorythm    | Train data | Test data | Whole data |
 |--------------|------------|-----------|------------|
 | LDA          |    0.85    |    0.82   |   8.82     |
 | Logistic     |    0.83    |    0.83   |   0.83     |
 |Random forest |    0.93    |    0.93   |   0.93     |
+
+The logistic model provide a good overall accuracy: ```latitude```, ```maxtwam```, ```radrm``` and ```ai``` are the most relevant feauture in classify the two species.
+
+| Parameter |    Estimate | Std. Error | z value  |  Pr(> z )    |   
+|-----------|-------------|------------|----------|--------------|
+|(Intercept)|  91.14763   | 25.76391   |  3.538   | 0.000403 *** |
+|longitude  |  0.35636    | 0.19589    | 1.819    | 0.068883 .   |
+|latitude   | -1.58398    | 0.59290    | -2.672   | 0.007550 **  |
+|mdr        |  -0.02154   | 0.45459    | -0.047   | 0.962209     |
+|maxtwam    |  -1.14742   | 0.24660    | -4.653   | 3.27e-06 *** |
+|mintdrq    |  -0.26969   | 0.13549    | -1.990   | 0.046546 *   | 
+|rawem      |   -0.06010  |  0.05904   | -1.018   | 0.308752     |
+|radrm      |    0.43611  |  0.16054   |  2.716   | 0.006599 **  |
+|pse        |    0.18054  |  0.18223   | 0.991    | 0.321818     |
+|radrq      |   -0.03940  |  0.04774   | -0.825   | 0.409229     |
+|ai         |   -0.17851  |   0.05104  | -3.498   | 0.000469 *** |
+
+The **random forest algorythm** turns to be the best among the three into correctly discriminate the two species performing with an overall accuracy of 0.93 on the test data setting at 5 the ```mtry``` parameter. According the plot the most important variable is ```maxtwam```.
+
+<p float="center">
+<img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_rf_nodes.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_rf_nodes.png" width="400" height="400" />  
+    
+<img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_rf_important_var.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_rf_important_var.png" width="400" height="400" /> 
+</p>    
+
+
+
+
