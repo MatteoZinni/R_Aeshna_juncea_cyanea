@@ -17,6 +17,8 @@
 - [4.1.0 Data extraction](#Data-extraction)
 - [4.1.0 Feature engineering and data editing](#Feature-engineering-and-data-editing) 
 - [5.1.0 Exploratory data analysis](#Exploratory-data-analysis) 
+- [6.1.0 Model building](#Model-building) 
+- [6.2.0 Model accuracy](#Model-accuracy)
 <!--te-->
 
 ## Project overview
@@ -28,6 +30,9 @@
 * Extracting climatic and environmental data from [Worldclim Bioclim](https://www.worldclim.org/data/bioclim.html) and [Corine Land Cover](https://land.copernicus.eu/pan-european/corine-land-cover) rasters, 
 * Summary statistics to descibe Hawkers ecological conditions
 * Linear discriminant analysis, logistic regression and random forest algorhytm to look for the best classification algorhytm
+
+## Findings
+
 
 ## Introduction
 The southern hawker or blue hawker (Aeshna cyanea) is a species of hawker dragonfly. The species is one of the most common and most widespread dragonflies in Europe. The total range is West Palearctic and covers a large part of Europe (to Scotland and southern Scandinavia in the North to Italy (without the Southwest) and the northern Balkans to the South); the Eastern boundary is formed by the Ural and the West by Ireland. It is also found in Northwest Africa (Algeria). In Central Europe the species is very common
@@ -164,4 +169,38 @@ The correlogram shomws both negative and positive high correlation coefficients 
 <img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_correlogram.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_correlogram.png" width="800" height="800" />    
 </p>    
 
-    
+## Model building
+Since some variables showed high correlation coeffiencent, performance of choosen models may be biased. Variable with  correlation coefficient higher than 0.75 have been discarded. Test data (60% of the whole dataset, 220 observations) have been fitted to three different classification algorythms:
+
+* Linear discriminant analyis
+* Logistic ression
+* Random forest algorythm
+
+Model accuracy in predicting the right species have been tested on the train data and on the whole dataset. The variables used to fit the models are reported below 
+
+|Variable | Description|
+|---------|-----|
+| ```longitude```    | The geographic longitude expressed in decimal degrees (WGS84)  | 
+| ```latitude```     | The geographic latitude expressed in decimal degrees (WGS84)   | 
+|```mdr```| Mean Diurnal Range (Mean of monthly (max temp - min temp))  |
+|```ist```  |Isothermality (BIO2/BIO7) (×100)  |
+|```tse```     |Temperature Seasonality (standard deviation ×100)  |
+|```maxtwam``` |Max Temperature of Warmest Month  |
+|```mintcom```  |Min Temperature of Coldest Month  |
+|```tar```     |Temperature Annual Range (BIO5-BIO6)  |
+|```mintwq```  |Mean Temperature of Wettest Quarter  |
+|```mintdrq``` |Mean Temperature of Driest Quarter  |
+|```rawen```   |Precipitation of Wettest Month  |
+|```radrm```   |Precipitation of Driest Month  |
+|```pse```     |Precipitation Seasonality (Coefficient of Variation)  |
+|```radrq```   |Precipitation of Driest Quarter  |
+|```ai```      |Aridity index values according De Martonne  |
+
+## Model accuracy
+Since accuracy values for all alrogrhytms are greater than 0.75 all model can be considered suitable to solve the classification problem. The random *forest algorythm* turns to be the best among the three into correctly discriminate the two species performing with an overall accuracy of 0.93 on the test data. According the plot the most important variable is ```maxtwam```. Its weight into discriminating the two species is considerable as reported in the plot below
+
+| Algorythm    | Train data | Test data | Whole data |
+|--------------|------------|-----------|------------|
+| LDA          |    0.85    |    0.82   |   8.82     |
+| Logistic     |    0.83    |    0.83   |   0.83     |
+|Random forest |    0.93    |    0.93   |   0.93     |
