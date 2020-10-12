@@ -145,4 +145,4 @@ Descriptrive statistics calculated for numerical variables
 |ai       |308  |36.49  |42.91             |66.57  |73.62  |92.99             |164.71|128.22|31.47    |990.12  |0.43     |
 
 
-<img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/tree/master/Aeshna_output/Aeshna_output_figs/aeshnid_month_barplot.tiff" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/tree/master/Aeshna_output/Aeshna_output_figs/aeshnid_month_barplot.tiff" width="500" height="500" />
+<img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/tree/master/Aeshna_output/Aeshna_output_figs/aeshnid_month_barplot.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/tree/master/Aeshna_output/Aeshna_output_figs/aeshnid_month_barplot.png" width="500" height="500" />
