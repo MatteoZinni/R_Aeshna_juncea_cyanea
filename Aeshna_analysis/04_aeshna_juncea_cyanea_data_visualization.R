@@ -17,10 +17,10 @@ library(ggplot2)
 library(corrplot)
 
 # using custom functions to calculate summary statistics
-functions_folder = "F:/Users/matte/Documents/data_science/data_science_r_projects/r_projects_Aeshna_juncea_cyanea/R_Aeshna_juncea_cyanea/Aeshna_functions"
+functions_folder = "F:/yourpath/r_projects_Aeshna_juncea_cyanea/R_Aeshna_juncea_cyanea/Aeshna_functions"
 
 # set output path to figure folder
-path_output_figs  = "F:/Users/matte/Documents/data_science/data_science_r_projects/r_projects_Aeshna_juncea_cyanea/R_Aeshna_juncea_cyanea/Aeshna_output/Aeshna_output_figs/"  
+path_output_figs  = "F:/yourpath/r_projects_Aeshna_juncea_cyanea/R_Aeshna_juncea_cyanea/Aeshna_output/Aeshna_output_figs/"  
 
 
 # sourcing functions
