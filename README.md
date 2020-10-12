@@ -60,7 +60,7 @@ The southern hawker or blue hawker (*Aeshna cyanea*) is a large and gaudy hawker
 ## [The dataset](https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_analysis/01_aeshna_juncea_cyanea_occurences_download.R)
 The function ```occ``` within the ```spocc``` package has been used to retrieve 5000 occurrences for Aeshna cyanea and 5000 entryes for Aeshna juncea from the European contintent. A. cyanea dataset feature 112 variables while A. juncea 140. Both dataset follow [The Darwin Core](https://dwc.tdwg.org/) standard as required by GBIF. 
 
-## Data cleaning
+## [Data cleaning](https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_analysis/02_aeshna_juncea_cyanea_data_cleaning.R)
 ### Coordinates
 Since occurences coordinates will be used to extract environmental and climatic data from raster our priority is to check the reliability of registered positions. The function 
 ```clean_coordinates``` has been used to flagging of common spatial and temporal errors. The function flag and exclude records assigned to country or province centroid, the open ocean, the headquarters of the Global Biodiversity Information Facility, urban areas or the location of biodiversity institutions. To furtherly increase data quality observations with more than 1000 m of coordinate uncertainty have been discarded. 
@@ -88,7 +88,7 @@ Only the following variable of the original [Darwin Core](https://dwc.tdwg.org/)
 | ```eventDate```  | The date-time or interval during which an Event occurred. For occurrences, this is the date-time when the event was recorded. Not suitable for a time in a geological context. | 
 | ```endDayOfYear```  | The latest integer day of the year on which the Event occurred  | 
 
-## Data extraction
+## [Data extraction](https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_analysis/03_aeshna_juncea_cyanea_data_extraction.R)
 Data extraction from rasters has been carryed over using the ```raster``` function on previously loaded data. Bioclimatic variables are derived from the monthly temperature and rainfall values in order to generate more biologically meaningful variables (30 arc-seconds spatial resolution - Km<sup>2</sup>). Land cover (100 m spatial resolution  comes from the 2018 Corine Land Cover. CLC is referring to a European programme establishing a computerised inventory on land cover of the 27 EC member states and other European countries.
 
 |Variable | Wordclim name    | Description|
@@ -123,7 +123,7 @@ To better describe the ecology of the two species some variables have been edite
 * **Month**: this variable (```month```) has been converted from numerical to factor (```Month```) to look at frequency of occurrences along time.
 
 ## Exploratory data analysis
-#### Summary statistics
+#### [Summary statistics](https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_analysis/04_aeshna_juncea_cyanea_summary_statistics.R)
 
 Descriptive statistics calculated for numerical variables
 |Variable |n    |min    |1st qrt.          | median|mean   |3rd qrt.          |max   |range |sd       |var     |CV       |
@@ -177,9 +177,9 @@ The correlogram shomws both negative and positive high correlation coefficients 
 ## Model building
 Since some variables showed high correlation coeffiencent, performance of choosen models may be biased. Variable with  correlation coefficient higher than 0.75 have been discarded. Test data (60% of the whole dataset, 220 observations) have been fitted to three different classification algorythms:
 
-* Linear discriminant analyis
-* Logistic ression
-* Random forest algorythm
+* [Linear discriminant analyis](https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_analysis/05_aeshna_juncea_cyanea_model_building_01_lda.R)
+* [Logistic ression](https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_analysis/05_aeshna_juncea_cyanea_model_building_02_logistic.R)
+* [Random forest algorythm](https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_analysis/05_aeshna_juncea_cyanea_model_building_03_random_forest.R)
 
 Model accuracy in predicting the right species have been tested on the train data and on the whole dataset. The variables used to fit the models are reported below 
 
