@@ -115,7 +115,7 @@ To better describe the ecology of the two species some variables have been edite
 ## Exploratory data analysis
 #### Summary statistics
 
-Descriptrive statistics calculated for numerical variables
+Descriptive statistics calculated for numerical variables
 |Variable |n    |min    |1st qrt.          | median|mean   |3rd qrt.          |max   |range |sd       |var     |CV       |
 |---------|-----|-------|------------------|-------|-------|------------------|------|------|---------|--------|---------|
 |longitude|308  |1.56   |9.84              |10.18  |10.35  |11.75             |14.65 |13.09 |2.29     |5.23    |0.22     |
@@ -144,17 +144,21 @@ Descriptrive statistics calculated for numerical variables
 |racoq    |308  |82     |161.75            |183.5  |207.93 |255.25            |477   |395   |76.81    |5899.91 |0.37     |
 |ai       |308  |36.49  |42.91             |66.57  |73.62  |92.99             |164.71|128.22|31.47    |990.12  |0.43     |
 
+Plot describing data distribution of the two species among months. The two species show a similar flight time-span (first plot). The violin plot describe how A. juncea occurences are more related to alpie altitude.
+
 <p float="center">
-<img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_month_barplot.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_month_barplot.png" width="470" height="470" />
-    
-<img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_elevation_violin.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_elevation_violin.png" width="470" height="470" />    
+<img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_month_barplot.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_month_barplot.png" width="450" height="450" />      
+<img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_elevation_violin.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_elevation_violin.png" width="450" height="450" />    
 </p>
-    
+ 
+The barplot show how A. cyanea has more clear preferences for habitat related to temperate still water or even more dry situations. On the other hand A. juncea prefers moors and peat bogs.
+ 
 <p float="center">
-<img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_clc_barplot.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_clc_barplot.png" width="470" height="470" />
-    
+<img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_clc_barplot.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_clc_barplot.png" width="470" height="470" />   
 <img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_isothermality_kernel.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_isothermality_kernel.png" width="470" height="470" />    
 </p>    
+
+The correlogram shomws both negative and positive high correlation coefficients for some couples of variables. 
 
 <p float="center">
 <img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_correlogram.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_correlogram.png" width="800" height="800" />    
