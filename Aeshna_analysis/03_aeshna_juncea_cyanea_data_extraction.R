@@ -22,6 +22,9 @@ library(sp)
 input_data_path_shape = "F:/Users/matte/Documents/data_science/data_science_r_projects/r_projects_Aeshna_juncea_cyanea/R_Aeshna_juncea_cyanea/Aeshna_data/Aeshna_data_base/shapes"
 input_data_path_raster = "F:/Users/matte/Documents/data_science/data_science_r_projects/r_projects_Aeshna_juncea_cyanea/R_Aeshna_juncea_cyanea/Aeshna_data/Aeshna_data_base/rasters"
 
+# set output path
+path_output_data = "F:/Users/matte/Documents/data_science/data_science_r_projects/r_projects_Aeshna_juncea_cyanea/R_Aeshna_juncea_cyanea/Aeshna_output/Aeshna_output_data/"
+
 # load european countries boundaries shapefiles
 europe_shapefile = "CNTR_BN_01M_2020_4326.shp"
 
@@ -192,4 +195,4 @@ aeshnid_df = aeshnid_df[aeshnid_df$elevation > 0,]
 aeshnid_df = aeshnid_df[rowSums(is.na(aeshnid_df)) != ncol(aeshnid_df),]
 
 # export data 
-write.csv (aeshnid_df, file=paste0(path_processed_data, "aeshnid_data_processed", format(Sys.time(), "%Y%m%d"), ".csv"), row.names=T)
+write.csv (aeshnid_df, file=paste0(path_output_data, "aeshnid_df_", format(Sys.time(), "%Y%m%d"), ".csv"), row.names=T)

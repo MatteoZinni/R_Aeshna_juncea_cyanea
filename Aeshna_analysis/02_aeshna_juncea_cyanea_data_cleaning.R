@@ -16,7 +16,7 @@ library(CoordinateCleaner)
 
 # set output path
 path_processed_data = "F:/Users/matte/Documents/data_science/data_science_r_projects/r_projects_Aeshna_juncea_cyanea/R_Aeshna_juncea_cyanea/Aeshna_data/Aeshna_data_processed/"
-
+path_output_data = "F:/Users/matte/Documents/data_science/data_science_r_projects/r_projects_Aeshna_juncea_cyanea/R_Aeshna_juncea_cyanea/Aeshna_output/Aeshna_output_data/"
 
 # coordinate cleaning
 
@@ -55,9 +55,13 @@ alpine_region <-c("Austria","Belgium", "France", "Germany", "Italy", "Luxembourg
 aeshna_cyanea = cyanea_clean_01[cyanea_clean_01$country %in% alpine_region,]
 aeshna_juncea = juncea_clean_01[juncea_clean_01$country %in% alpine_region,]
 
+# latitudinal subsetting
+aeshna_cyanea = subset(aeshna_cyanea, aeshna_cyanea$latitude > 43 & aeshna_cyanea$latitude < 48)
+aeshna_juncea = subset(aeshna_juncea, aeshna_juncea$latitude > 43 & aeshna_juncea$latitude < 48)
+         
 # export data
-write.csv (aeshna_cyanea, file=paste0(path_processed_data, "aeshna_cyanea_occurences_data_", format(Sys.time(), "%Y%m%d"), ".csv"), row.names=T)
-write.csv (aeshna_juncea, file=paste0(path_processed_data, "aeshna_juncea_occurences_data_", format(Sys.time(), "%Y%m%d"), ".csv"), row.names=T)
+write.csv (aeshna_cyanea, file=paste0(path_processed_data, "aeshna_cyanea_occurences_clean_data_", format(Sys.time(), "%Y%m%d"), ".csv"), row.names=T)
+write.csv (aeshna_juncea, file=paste0(path_processed_data, "aeshna_juncea_occurences_clean_data_", format(Sys.time(), "%Y%m%d"), ".csv"), row.names=T)
 
 # retain only variable useful for the project
 
@@ -75,6 +79,5 @@ aeshnid_df = rbind(aeshna_cyanea,aeshna_juncea)
 colnames(aeshnid_df)[1] = "species"
 
 # export data
-write.csv (aeshnid_df, file=paste0(path_processed_data, "aeshnid_data_", format(Sys.time(), "%Y%m%d"), ".csv"), row.names=T)
-
-names(aeshnid_df)
+write.csv (aeshnid_df, file=paste0(path_processed_data, "aeshnid_df_clean_data_", format(Sys.time(), "%Y%m%d"), ".csv"), row.names=T)
+write.csv (aeshnid_df, file=paste0(path_output_data, "aeshnid_df_clean_data_", format(Sys.time(), "%Y%m%d"), ".csv"), row.names=T)

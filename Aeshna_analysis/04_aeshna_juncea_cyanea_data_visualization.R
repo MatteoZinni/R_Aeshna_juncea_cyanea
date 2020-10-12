@@ -16,10 +16,10 @@ install.packages("corrplot")
 library(ggplot2)
 library(corrplot)
 
-# using custiom functions to calculate summary statistics
+# using custom functions to calculate summary statistics
 functions_folder = "F:/Users/matte/Documents/data_science/data_science_r_projects/r_projects_Aeshna_juncea_cyanea/R_Aeshna_juncea_cyanea/Aeshna_functions"
 
-#  set OUTPUT path Tfigure folder
+# set output path to figure folder
 path_output_figs  = "F:/Users/matte/Documents/data_science/data_science_r_projects/r_projects_Aeshna_juncea_cyanea/R_Aeshna_juncea_cyanea/Aeshna_output/Aeshna_output_figs/"  
 
 
@@ -46,22 +46,22 @@ write.csv (cyanea_summary, file=paste0(path_processed_data, "aeshna_cyanea_summa
 write.csv (juncea_summary, file=paste0(path_processed_data, "aeshna_cyanea_summary_statistics_", format(Sys.time(), "%Y%m%d"), ".csv"), row.names=T)
 
 # subset continuous variables
-aeshnid_cont = aeshnid_df[,c(1,3,4,5,8,9,12,15:33,35,37)]
+aeshnid_df = aeshnid_df[,c(1,3,4,5,8,9,12,15:33,35,37)]
 
 # 04.2 Qualitative variables
 
 # month
 
 # absolute frequencies
-ggplot(as.data.frame(table(aeshnid_df$species, aeshnid_df$month)), aes(x= Var2 , y = Freq, fill=Var1 )) + 
+ggplot(as.data.frame(table(aeshnid_df$species, aeshnid_df$Month)), aes(x= Var2 , y = Freq, fill=Var1 )) + 
   geom_bar(stat="identity") +
   scale_fill_manual(values=c("darkolivegreen2", "deepskyblue2")) +
   guides(fill=guide_legend(title="Species"))+
   labs(title = "A. cyanea and A. juncea occurences by month",x="Month",y="Absolute frequencies")
-theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5))
 
 # side by side
-ggplot(as.data.frame(table(aeshnid_df$species, aeshnid_df$month)), aes(x= Var2 , y = Freq, fill=Var1 )) + 
+ggplot(as.data.frame(table(aeshnid_df$species, aeshnid_df$Month)), aes(x= Var2 , y = Freq, fill=Var1 )) + 
   geom_bar(stat="identity",position = "dodge") +
   scale_fill_manual(values=c("darkolivegreen2", "deepskyblue2")) +
   guides(fill=guide_legend(title="Species"))+
@@ -69,7 +69,7 @@ ggplot(as.data.frame(table(aeshnid_df$species, aeshnid_df$month)), aes(x= Var2 ,
   theme(plot.title = element_text(hjust = 0.5))
 
 # relative frequencies
-ggplot(as.data.frame(table(aeshnid_df$species, aeshnid_df$month)/length(aeshnid_df$species)), aes(x= Var2 , y = Freq, fill=Var1 )) + 
+ggplot(as.data.frame(table(aeshnid_df$species, aeshnid_df$Month)/length(aeshnid_df$species)), aes(x= Var2 , y = Freq, fill=Var1 )) + 
   geom_bar(stat="identity",position = "dodge") +
   scale_fill_manual(values=c("darkolivegreen2", "deepskyblue2")) +
   guides(fill=guide_legend(title="Species"))+
@@ -77,7 +77,7 @@ ggplot(as.data.frame(table(aeshnid_df$species, aeshnid_df$month)/length(aeshnid_
   theme(plot.title = element_text(hjust = 0.5))
 
 # relative percentage frequencies
-ggplot(as.data.frame(table(aeshnid_df$species, aeshnid_df$month)/length(aeshnid_df$species)*100), aes(x= Var2 , y = Freq, fill=Var1 )) + 
+ggplot(as.data.frame(table(aeshnid_df$species, aeshnid_df$Month)/length(aeshnid_df$species)*100), aes(x= Var2 , y = Freq, fill=Var1 )) + 
   geom_bar(stat="identity",position = "dodge") +
   scale_fill_manual(values=c("darkolivegreen2", "deepskyblue2")) +
   guides(fill=guide_legend(title="Species"))+
@@ -92,7 +92,7 @@ ggplot(as.data.frame(table(aeshnid_df$species, aeshnid_df$season)), aes(x= Var2 
   scale_fill_manual(values=c("darkolivegreen2", "deepskyblue2")) +
   guides(fill=guide_legend(title="Species"))+
   labs(title = "A. cyanea and A. juncea occurences by season",x="Season",y="Absolute frequencies")
-theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5))
 
 # side by side
 ggplot(as.data.frame(table(aeshnid_df$species, aeshnid_df$season)), aes(x= Var2 , y = Freq, fill=Var1 )) + 
@@ -188,20 +188,18 @@ ggplot(as.data.frame(table(aeshnid_df$species, aeshnid_df$ai_climate)/length(aes
   labs(title = "A. cyanea and A. juncea occurences by ai_climate",x="Corine Land Cover Habitat",y="Relative frequencies (%)")+
   theme(plot.title = element_text(hjust = 0.5))
 
-
-
 # 04.3 Quantitative variables
 
 # boxplot of continuous variables
 
 # make a vector to loop over
-cont_var_list = names(aeshnid_cont[-1])
+cont_var_list = names(aeshnid_df[-1])
 
 # start plot
 for (i in cont_var_list) 
 {
   tiff(file = paste0(path_output_figs,"aeshnid_bp_", i, ".tiff", sep=""), res=500, compression = "lzw", height=5, width=5, units="in")
-  boxplot(aeshnid_cont[, i] ~ aeshnid_cont$species, drop = T,
+  boxplot(aeshnid_df[, i] ~ aeshnid_df$species, drop = T,
           xaxt = "n",
           ylab = paste(i), las = 1,
           xlab = "Species",
@@ -214,7 +212,7 @@ for (i in cont_var_list)
 # violin plot
 
 # longitude
-ggplot(aeshnid_cont, aes(x=species, y=longitude , fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y=longitude , fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -223,7 +221,7 @@ ggplot(aeshnid_cont, aes(x=species, y=longitude , fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # latitude
-ggplot(aeshnid_cont, aes(x=species, y=latitude , fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y=latitude , fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -232,7 +230,7 @@ ggplot(aeshnid_cont, aes(x=species, y=latitude , fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # elevation
-ggplot(aeshnid_cont, aes(x=species, y=elevation, fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y=elevation, fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -241,7 +239,7 @@ ggplot(aeshnid_cont, aes(x=species, y=elevation, fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # day
-ggplot(aeshnid_cont, aes(x=species, y= day, fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y= day, fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -250,7 +248,7 @@ ggplot(aeshnid_cont, aes(x=species, y= day, fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # month
-ggplot(aeshnid_cont, aes(x=species, y= month, fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y= month, fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -259,7 +257,7 @@ ggplot(aeshnid_cont, aes(x=species, y= month, fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # endDayOfYear  
-ggplot(aeshnid_cont, aes(x=species, y=endDayOfYear, fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y=endDayOfYear, fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -268,7 +266,7 @@ ggplot(aeshnid_cont, aes(x=species, y=endDayOfYear, fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # amt
-ggplot(aeshnid_cont, aes(x=species, y=amt, fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y=amt, fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -277,7 +275,7 @@ ggplot(aeshnid_cont, aes(x=species, y=amt, fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # mean diurnal range
-ggplot(aeshnid_cont, aes(x=species, y=mdr, fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y=mdr, fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -286,7 +284,7 @@ ggplot(aeshnid_cont, aes(x=species, y=mdr, fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # isothermality
-ggplot(aeshnid_cont, aes(x=species, y=ist, fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y=ist, fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -295,7 +293,7 @@ ggplot(aeshnid_cont, aes(x=species, y=ist, fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # temperature seasonality
-ggplot(aeshnid_cont, aes(x=species, y=tse, fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y=tse, fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -304,7 +302,7 @@ ggplot(aeshnid_cont, aes(x=species, y=tse, fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # Max temperature of the warmest month
-ggplot(aeshnid_cont, aes(x=species, y=maxtwam, fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y=maxtwam, fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -313,7 +311,7 @@ ggplot(aeshnid_cont, aes(x=species, y=maxtwam, fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # Min temperature of the coldest month
-ggplot(aeshnid_cont, aes(x=species, y=mintcom , fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y=mintcom , fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -322,7 +320,7 @@ ggplot(aeshnid_cont, aes(x=species, y=mintcom , fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # Temperature annual range
-ggplot(aeshnid_cont, aes(x=species, y=tar , fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y=tar , fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -331,7 +329,7 @@ ggplot(aeshnid_cont, aes(x=species, y=tar , fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # Min temperature of wettest quarter
-ggplot(aeshnid_cont, aes(x=species, y=mintwq  , fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y=mintwq  , fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -340,7 +338,7 @@ ggplot(aeshnid_cont, aes(x=species, y=mintwq  , fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # Min temperature of the driest quarter
-ggplot(aeshnid_cont, aes(x=species, y=mintdrq  , fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y=mintdrq  , fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -349,7 +347,7 @@ ggplot(aeshnid_cont, aes(x=species, y=mintdrq  , fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # Min temperature of the warmest quarter
-ggplot(aeshnid_cont, aes(x=species, y=mintdrq   , fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y=mintdrq   , fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -358,7 +356,7 @@ ggplot(aeshnid_cont, aes(x=species, y=mintdrq   , fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # Min temperature of the coldest quarter
-ggplot(aeshnid_cont, aes(x=species, y=mtcoq     , fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y=mtcoq     , fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -367,7 +365,7 @@ ggplot(aeshnid_cont, aes(x=species, y=mtcoq     , fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # Annual rainfall
-ggplot(aeshnid_cont, aes(x=species, y=ara, fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y=ara, fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -376,7 +374,7 @@ ggplot(aeshnid_cont, aes(x=species, y=ara, fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # Precipitation of the wettest month
-ggplot(aeshnid_cont, aes(x=species, y=rawem, fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y=rawem, fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -385,7 +383,7 @@ ggplot(aeshnid_cont, aes(x=species, y=rawem, fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # Precipitation of the driest month
-ggplot(aeshnid_cont, aes(x=species, y=radrm, fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y=radrm, fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -394,7 +392,7 @@ ggplot(aeshnid_cont, aes(x=species, y=radrm, fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # Precipitation seasonality
-ggplot(aeshnid_cont, aes(x=species, y=pse, fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y=pse, fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -403,7 +401,7 @@ ggplot(aeshnid_cont, aes(x=species, y=pse, fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # Precipitation of the wettest quarter
-ggplot(aeshnid_cont, aes(x=species, y=raweq, fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y=raweq, fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -412,7 +410,7 @@ ggplot(aeshnid_cont, aes(x=species, y=raweq, fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # Precipitation of the driest quarter
-ggplot(aeshnid_cont, aes(x=species, y=radrq, fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y=radrq, fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -421,7 +419,7 @@ ggplot(aeshnid_cont, aes(x=species, y=radrq, fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # Precipitation of the warmest quarter
-ggplot(aeshnid_cont, aes(x=species, y=rawaq , fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y=rawaq , fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -430,7 +428,7 @@ ggplot(aeshnid_cont, aes(x=species, y=rawaq , fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # Precipitation of the coldest quarter
-ggplot(aeshnid_cont, aes(x=species, y=rawaq , fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y=rawaq , fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -439,7 +437,7 @@ ggplot(aeshnid_cont, aes(x=species, y=rawaq , fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # Aridity index
-ggplot(aeshnid_cont, aes(x=species, y= ai , fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y= ai , fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -448,7 +446,7 @@ ggplot(aeshnid_cont, aes(x=species, y= ai , fill = species)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 # clc values
-ggplot(aeshnid_cont, aes(x=species, y= clc_values , fill = species)) + 
+ggplot(aeshnid_df, aes(x=species, y= clc_values , fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
@@ -628,21 +626,21 @@ ggplot(aeshnid_df, aes(x=clc_values   , fill=species)) + geom_density(alpha=0.7)
 
 # correlogramm
 # calculate correlation matrix with customized funtion
-p_mat_aeshnid_cont <- corr_m_test(aeshnid_cont[,-1])
+p_mat_aeshnid_df <- corr_m_test(aeshnid_df[,c(3,4,5,8,9,12,15:34,36)])
 
 # customize corrplot color palette
 col <- colorRampPalette(c("#BB4444", "#EE9988", "#FFFFFF", "#77AADD", "#4477AA"))
 
 # export correlogram
-tiff(file = paste0(path_output_figs,"aeshnid_continuos_", ".tiff", sep=""), res=500, compression = "lzw", height=15, width=15, units="in")
-aeshnid_cont_corrplot = corrplot(aeshnid_cont_cor, method="color", col=col(200),  
+tiff(file = paste0(path_output_figs,"aeshnid_correlogram", ".tiff", sep=""), res=500, compression = "lzw", height=15, width=15, units="in")
+aeshnid_df_corrplot = corrplot(aeshnid_df_cor, method="color", col=col(200),  
                                  type="upper", order="hclust", 
                                  addCoef.col = "black", # Add coefficient of correlation
                                  tl.col="black", tl.srt=45, #Text label color and rotation
                                  # Combine with significance
-                                 p.mat = p_mat_aeshnid_cont, sig.level = 0.01, insig = "blank", 
+                                 p.mat = p_mat_aeshnid_df, sig.level = 0.01, insig = "blank", 
                                  # hide correlation coefficient on the principal diagonal
                                  diag=FALSE)
-mtext("A. cyanea and A. juncea \n Environmental continuous variables", at=5.5, line=- -1, cex=1.5)
+mtext("A. cyanea and A. juncea \n Environmental and climatic variables", at=15.5, line=- -1, cex=1.5)
 box(which = "outer", lty = "solid", lwd=3)
 dev.off()
