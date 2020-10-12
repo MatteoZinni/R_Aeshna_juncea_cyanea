@@ -23,7 +23,7 @@ input_data_path_shape = "F:/Users/matte/Documents/data_science/data_science_r_pr
 input_data_path_raster = "F:/Users/matte/Documents/data_science/data_science_r_projects/r_projects_Aeshna_juncea_cyanea/R_Aeshna_juncea_cyanea/Aeshna_data/Aeshna_data_base/rasters"
 
 # set output path
-path_output_data = "F:/Users/matte/Documents/data_science/data_science_r_projects/r_projects_Aeshna_juncea_cyanea/R_Aeshna_juncea_cyanea/Aeshna_output/Aeshna_output_data/"
+path_output_data = "F:/https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_analysis/01_aeshna_juncea_cyanea_occurences_download.R/r_projects_Aeshna_juncea_cyanea/R_Aeshna_juncea_cyanea/Aeshna_output/Aeshna_output_data/"
 
 # load european countries boundaries shapefiles
 europe_shapefile = "CNTR_BN_01M_2020_4326.shp"
