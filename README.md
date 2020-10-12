@@ -7,7 +7,8 @@
 ## Table of contents
 <!--ts-->
 - [1.0.0 Project overview](#Project-overview)
-- [1.1.0 Introduction](#Introduction)
+- [1.1.0 Findings](#Findings)
+- [1.2.0 Introduction](#Introduction)
 - [2.0.0 Material and methods](#Material-and-methods)
 - [3.0.0 The dataset](#The-dataset)
 - [3.1.0 Data cleaning](#Data-cleaning)
