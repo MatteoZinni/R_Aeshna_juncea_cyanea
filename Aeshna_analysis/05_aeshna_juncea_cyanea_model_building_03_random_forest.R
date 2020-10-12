@@ -64,13 +64,19 @@ mean(pred_rf_test_data == aeshnid_test_rf$species)
 table(pred_rf_test_data,aeshnid_test_rf$species)
 
 #check important variables
-importance(rf_model_02)        
-varImpPlot(rf_model_02) 
+
+importance(rf_model_02)
+
+png(file = paste0(path_output_figs,"aeshnid_rf_important_var", ".png", sep=""), res=500, height=5, width=5, units="in")
+varImpPlot(rf_model_02, main = "Random forest algorithm \n mtry = 5") 
+dev.off()
 
 # plot random forest 
 plot(rf_model_03)
 
+png(file = paste0(path_output_figs,"aeshnid_rf_nodes", ".png", sep=""), res=500, height=5, width=5, units="in")
 hist(treesize(rf_model_02),col = "gray", main = "Number of nodes", xlab = "Nodes")
+dev.off()
 
 # tuning the model using a loop to identify the best mtry number
 a=c()

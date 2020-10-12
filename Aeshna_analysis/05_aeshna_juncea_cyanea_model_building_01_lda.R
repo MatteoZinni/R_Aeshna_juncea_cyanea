@@ -91,7 +91,7 @@ mean(prediction_whole == aeshnid_df$species)
 lda_data = data.frame(aeshnid_train$species, predict(lda_model_1)$x)
 
 # plot LDA 
-ggplot(lda_data, aes(x=LD1, fill=aeshnid_train.species)) + 
+aeshnid_lda_plot = ggplot(lda_data, aes(x=LD1, fill=aeshnid_train.species)) + 
   geom_histogram(alpha=0.7, color="black") +
   scale_fill_manual(values=c("#bcee68", "#00B2EE")) +
   guides(fill=guide_legend(title="Species"))+
@@ -103,3 +103,6 @@ ggplot(lda_data, aes(x=LD1, fill=aeshnid_train.species)) +
    geom = "text", x = -5, y = 40, size = 4,hjust = 0) +
   annotate(geom = "rect", xmin = -5.10, xmax = -3, ymin = 37, ymax = 43, linetype = 1, color = "Grey20", fill = "NA") +
   geom_segment(aes(x = -0.07122065, y = 0, xend = -0.07122065, yend = 45), size = 1, linetype="twodash") 
+
+ggsave(paste0(path_output_figs,"aeshnid_lda_barplot", ".png", sep=""), plot = aeshnid_lda_plot, device = NULL, path = NULL,
+       scale = 1, width = 12, height = 12, dpi = 1000, limitsize = TRUE, units = "in")

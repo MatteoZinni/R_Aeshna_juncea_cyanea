@@ -52,7 +52,7 @@ head(predictions_train_data_rd, 10)
 # confusion matrix
 table(predictions_train_data_rd, aeshnid_train_log[,1])
 
-# model accuracy on test dataset
+# model accuracy on train dataset
 accuracy <- table(predictions_train_data_rd, predictions_train_data_rd[,1])
 sum(diag(accuracy))/sum(accuracy)
 

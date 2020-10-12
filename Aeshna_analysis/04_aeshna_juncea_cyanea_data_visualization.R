@@ -60,13 +60,17 @@ ggplot(as.data.frame(table(aeshnid_df$species, aeshnid_df$Month)), aes(x= Var2 ,
   labs(title = "A. cyanea and A. juncea occurences by month",x="Month",y="Absolute frequencies")
   theme(plot.title = element_text(hjust = 0.5))
 
-# side by side
-ggplot(as.data.frame(table(aeshnid_df$species, aeshnid_df$Month)), aes(x= Var2 , y = Freq, fill=Var1 )) + 
-  geom_bar(stat="identity",position = "dodge") +
-  scale_fill_manual(values=c("darkolivegreen2", "deepskyblue2")) +
-  guides(fill=guide_legend(title="Species"))+
-  labs(title = "A. cyanea and A. juncea occurences by month",x="Month",y="Absolute frequencies")+
-  theme(plot.title = element_text(hjust = 0.5))
+# side by side ------ TO EXPORT
+png(file = paste0(path_output_figs,"aeshnid_month_barplot", ".png", sep=""), res=500, height=10, width=10, units="in")
+aeshnid_month_barplot = ggplot(as.data.frame(table(aeshnid_df$species, aeshnid_df$Month)), aes(x= Var2 , y = Freq, fill=Var1 )) + 
+                        geom_bar(stat="identity",position = "dodge") +
+                        scale_fill_manual(values=c("darkolivegreen2", "deepskyblue2")) +
+                        guides(fill=guide_legend(title="Species"))+
+                        labs(title = "A. cyanea and A. juncea occurences by month",x="Month",y="Absolute frequencies")+
+                        theme(plot.title = element_text(hjust = 0.5))
+
+ggsave(paste0(path_output_figs,"aeshnid_month_barplot", ".png", sep=""), plot = aeshnid_month_barplot, device = NULL, path = NULL,
+       scale = 1, width = NA, height = NA, dpi = 1000, limitsize = TRUE, units = "in")
 
 # relative frequencies
 ggplot(as.data.frame(table(aeshnid_df$species, aeshnid_df$Month)/length(aeshnid_df$species)), aes(x= Var2 , y = Freq, fill=Var1 )) + 
@@ -122,13 +126,17 @@ ggplot(as.data.frame(table(aeshnid_df$species, aeshnid_df$season)/length(aeshnid
 
 # corine land cover habitat
 
-# absolute frequencies
-ggplot(as.data.frame(table(aeshnid_df$species, aeshnid_df$clc_hab)), aes(x= Var2 , y = Freq, fill=Var1 )) + 
+# absolute frequencies ------ TO EXPORT
+aeshnid_clc_barplot = ggplot(as.data.frame(table(aeshnid_df$species, aeshnid_df$clc_hab)), aes(x= Var2 , y = Freq, fill=Var1 )) + 
   geom_bar(stat="identity") +
   scale_fill_manual(values=c("darkolivegreen2", "deepskyblue2")) +
   guides(fill=guide_legend(title="Species"))+
-  labs(title = "A. cyanea and A. juncea occurences by clc_hab",x="Corine Land Cover Habitat",y="Absolute frequencies")
+  labs(title = "A. cyanea and A. juncea occurences by clc_hab",x="Corine Land Cover Habitat",y="Absolute frequencies")+
 theme(plot.title = element_text(hjust = 0.5))
+
+# save
+ggsave(paste0(path_output_figs,"aeshnid_clc_barplot", ".png", sep=""), plot = aeshnid_clc_barplot, device = NULL, path = NULL, width = 15, height = 15, 
+       dpi = 500, limitsize = TRUE, units = "in")
 
 # side by side
 ggplot(as.data.frame(table(aeshnid_df$species, aeshnid_df$clc_hab)), aes(x= Var2 , y = Freq, fill=Var1 )) + 
@@ -229,14 +237,18 @@ ggplot(aeshnid_df, aes(x=species, y=latitude , fill = species)) +
   labs(title = "A. cyanea and A. juncea occurences",x="Species",y="Latitude") +
   theme(plot.title = element_text(hjust = 0.5))
 
-# elevation
-ggplot(aeshnid_df, aes(x=species, y=elevation, fill = species)) + 
+# elevation ---- TO EXPORT
+aeshnid_elevation_violin = ggplot(aeshnid_df, aes(x=species, y=elevation, fill = species)) + 
   geom_violin(trim=T, scale = "area")+
   scale_fill_manual(values=c("#bcee68", "#00B2EE"))+
   geom_boxplot(width=0.1, fill="white") +
   labs(fill = "Species")+
   labs(title = "A. cyanea and A. juncea occurences",x="Species",y="Elevation (m)") +
   theme(plot.title = element_text(hjust = 0.5))
+
+# save
+ggsave(paste0(path_output_figs,"aeshnid_elevation_violin", ".png", sep=""), plot = aeshnid_elevation_violin, device = NULL, path = NULL, width = 10, height = 10, 
+       dpi = 500, limitsize = TRUE, units = "in")
 
 # day
 ggplot(aeshnid_df, aes(x=species, y= day, fill = species)) + 
@@ -492,11 +504,16 @@ ggplot(aeshnid_df, aes(x=endDayOfYear  , fill=species)) + geom_density(alpha=0.7
   guides(fill=guide_legend(title="Species"))+
   labs(title = "A. cyanea and A. juncea occurence",x="Day of the Year",y="Density") 
 
-# Annual Mean Temperature
-ggplot(aeshnid_df, aes(x=amt   , fill=species)) + geom_density(alpha=0.7) +
+# Annual Mean Temperature ---- TO EXPORT
+aeshnid_annual_mean_t_kernel = ggplot(aeshnid_df, aes(x=amt   , fill=species)) + geom_density(alpha=0.7) +
   scale_fill_manual(values=c("#bcee68", "#00B2EE")) +
   guides(fill=guide_legend(title="Species"))+
-  labs(title = "A. cyanea and A. juncea occurence",x="Annual Mean Temperature",y="Density") 
+  labs(title = "A. cyanea and A. juncea occurence",x="Annual Mean Temperature",y="Density") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+# save
+ggsave(paste0(path_output_figs,"aeshnid_annual_mean_t_kernel", ".png", sep=""), plot = aeshnid_annual_mean_t_kernel, device = NULL, path = NULL, width = 10, height = 10, 
+       dpi = 500, limitsize = TRUE, units = "in")
 
 # Mean diurnal range
 ggplot(aeshnid_df, aes(x=mdr    , fill=species)) + geom_density(alpha=0.7) +
@@ -504,11 +521,17 @@ ggplot(aeshnid_df, aes(x=mdr    , fill=species)) + geom_density(alpha=0.7) +
   guides(fill=guide_legend(title="Species"))+
   labs(title = "A. cyanea and A. juncea occurence",x="Mean diurnal range",y="Density") 
 
-# Isothermality
-ggplot(aeshnid_df, aes(x=ist     , fill=species)) + geom_density(alpha=0.7) +
-  scale_fill_manual(values=c("#bcee68", "#00B2EE")) +
-  guides(fill=guide_legend(title="Species"))+
-  labs(title = "A. cyanea and A. juncea occurence",x="Isothermality",y="Density") 
+# Isothermality ------ TO EXPORT
+aeshnid_isothermality_kernel = ggplot(aeshnid_df, aes(x=ist     , fill=species)) + geom_density(alpha=0.7) +
+                               scale_fill_manual(values=c("#bcee68", "#00B2EE")) +
+                               guides(fill=guide_legend(title="Species"))+
+                               labs(title = "A. cyanea and A. juncea occurence",x="Isothermality",y="Density") +
+                               theme(plot.title = element_text(hjust = 0.5))
+
+# save
+ggsave(paste0(path_output_figs,"aeshnid_isothermality_kernel", ".png", sep=""), plot = aeshnid_isothermality_kernel, device = NULL, path = NULL, width = 10, height = 10, 
+       dpi = 500, limitsize = TRUE, units = "in")
+
 
 # Temperature seasonality
 ggplot(aeshnid_df, aes(x=tse     , fill=species)) + geom_density(alpha=0.7) +
@@ -517,13 +540,16 @@ ggplot(aeshnid_df, aes(x=tse     , fill=species)) + geom_density(alpha=0.7) +
   labs(title = "A. cyanea and A. juncea occurence",x="Temperature seasonality",y="Density") 
 
 # Max temperature of the warmest month
-ggplot(aeshnid_df, aes(x=maxtwam     , fill=species)) + geom_density(alpha=0.7) +
+aeshnid_maxtwam_kernel = ggplot(aeshnid_df, aes(x=maxtwam     , fill=species)) + geom_density(alpha=0.7) +
   scale_fill_manual(values=c("#bcee68", "#00B2EE")) +
   guides(fill=guide_legend(title="Species"))+
   labs(title = "A. cyanea and A. juncea occurence",x=" Max temperature of the warmest month",y="Density")
 
+ggsave(paste0(path_output_figs,"aeshnid_maxtwam_kernel", ".png", sep=""), plot = aeshnid_maxtwam_kernel, device = NULL, path = NULL, width = 10, height = 10, 
+       dpi = 500, limitsize = TRUE, units = "in")
+
 # Max temperature Warmest month
-ggplot(aeshnid_df, aes(x=maxtwam, fill=species)) + geom_density(alpha=0.7) +
+aeshnid_isothermality_kernel ggplot(aeshnid_df, aes(x=maxtwam, fill=species)) + geom_density(alpha=0.7) +
   scale_fill_manual(values=c("#bcee68", "#00B2EE")) +
   guides(fill=guide_legend(title="Species"))+
   labs(title = "A. cyanea and A. juncea occurence",x="Max temperature Warmest month",y="Density") 
@@ -632,7 +658,7 @@ p_mat_aeshnid_df <- corr_m_test(aeshnid_df[,c(3,4,5,8,9,12,15:34,36)])
 col <- colorRampPalette(c("#BB4444", "#EE9988", "#FFFFFF", "#77AADD", "#4477AA"))
 
 # export correlogram
-tiff(file = paste0(path_output_figs,"aeshnid_correlogram", ".tiff", sep=""), res=500, compression = "lzw", height=15, width=15, units="in")
+png(file = paste0(path_output_figs,"aeshnid_correlogram", ".png", sep=""), res=500, height=15, width=15, units="in")
 aeshnid_df_corrplot = corrplot(aeshnid_df_cor, method="color", col=col(200),  
                                  type="upper", order="hclust", 
                                  addCoef.col = "black", # Add coefficient of correlation
