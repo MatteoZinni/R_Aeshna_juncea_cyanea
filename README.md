@@ -144,5 +144,20 @@ Descriptrive statistics calculated for numerical variables
 |racoq    |308  |82     |161.75            |183.5  |207.93 |255.25            |477   |395   |76.81    |5899.91 |0.37     |
 |ai       |308  |36.49  |42.91             |66.57  |73.62  |92.99             |164.71|128.22|31.47    |990.12  |0.43     |
 
+<p float="center">
+<img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_month_barplot.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_month_barplot.png" width="470" height="470" />
+    
+<img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_elevation_violin.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_elevation_violin.png" width="470" height="470" />    
+</p>
+    
+<p float="center">
+<img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_clc_barplot.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_clc_barplot.png" width="470" height="470" />
+    
+<img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_isothermality_kernel.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_isothermality_kernel.png" width="470" height="470" />    
+</p>    
 
-<img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/tree/master/Aeshna_output/Aeshna_output_figs/aeshnid_month_barplot.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/tree/master/Aeshna_output/Aeshna_output_figs/aeshnid_month_barplot.png" width="500" height="500" />
+<p float="center">
+<img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_correlogram.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_correlogram.png" width="800" height="800" />    
+</p>    
+
+    
