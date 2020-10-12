@@ -15,7 +15,7 @@ install.packages("spocc")
 library(spocc)
 
 # set output path
-path_processed_data = "F:/Users/matte/Documents/data_science/data_science_r_projects/r_projects_Aeshna_juncea_cyanea/R_Aeshna_juncea_cyanea/Aeshna_data/Aeshna_data_processed/"
+path_processed_data = "F:/yourpath/r_projects_Aeshna_juncea_cyanea/R_Aeshna_juncea_cyanea/Aeshna_data/Aeshna_data_processed/"
 
 # set the two target species
 aeshna_cyanea <- "Aeshna cyanea"
