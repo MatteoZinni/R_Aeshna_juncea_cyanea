@@ -16,6 +16,9 @@ install.packages("ggplot2")
 library(randomForest)
 library(ggplot2)
 
+# set output path
+path_output_data = "F:/mypath/r_projects_Aeshna_juncea_cyanea/R_Aeshna_juncea_cyanea/Aeshna_output/Aeshna_output_data/"
+
 # prepare data 
 aeshnid_train_rf  = aeshnid_train
 aeshnid_test_rf   = aeshnid_test
