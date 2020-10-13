@@ -23,17 +23,17 @@
 <!--te-->
 
 ## Project overview
-* Classify two dragonfly species (*Aeshna cyanea* and *Aeshna juncea*) using three supervised learning strategies and a set of environmental feaures used as predictors.
+* Classify two dragonfly species (*Aeshna cyanea* and *Aeshna juncea*) using three supervised learning strategies and a set of environmental features used as predictors.
 * Verify if the two species distribution overlaps or if they can potentially share the same habitats.
-* Scraped over 1000 occurrences data from  GBIF and using python and spocc.
-* Clean data removing occurrences with wrong coordinates using clean_coordinates
-* Subsetting only european countries which host - even partially - the alpine region
-* Extracting climatic and environmental data from [Worldclim Bioclim](https://www.worldclim.org/data/bioclim.html) and [Corine Land Cover](https://land.copernicus.eu/pan-european/corine-land-cover) rasters, 
-* Summary statistics to descibe Hawkers ecological conditions
-* Linear discriminant analysis, logistic regression and random forest algorhytm to look for the best classification algorhytm
+* Scraped over 1000 occurrences data from  GBIF and using R and spocc.
+* Clean data removing occurrences with wrong coordinates using clean_coordinates.
+* Subsetting only European countries which host - even partially - the Alpine region.
+* Extracting climatic and environmental data from [Worldclim Bioclim](https://www.worldclim.org/data/bioclim.html) and [Corine Land Cover](https://land.copernicus.eu/pan-european/corine-land-cover) rasters.
+* Summary statistics to descibe Hawkers ecological conditions.
+* Linear discriminant analysis, logistic regression and random forest algorithm to look for the best classification algorithm.
 
 ## Findings
-The random forest algorhytms has been use to successfully discriminate the two dragonfly spieces according a set of climatic variables derived from raster data. The most influent variable is ```maxtwam``` and it is quite well explanatory of the ecology of the two species. *A cyanea* show a more termophilous ecology nd since the ```elevation``` parameter have been discarderd an increase of the temperature with the reduction of the thermal differences may cause the two species to compete.
+The random forest algorithm has been used to successfully discriminate the two dragonfly species according to a set of climatic variables derived from raster data. The most influent variable is ```maxtwam``` and it is quite well explanatory of the ecology of the two species. *A. cyanea* shows a more thermophilous ecology and since the ```elevation``` parameter hase been discarded, an increase of the temperature with the reduction of the thermal differences may cause the two species to compete.
 
 <p float="center">
 <img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_rf_important_var.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_rf_important_var.png" width="500" height="500" /> 
@@ -42,12 +42,12 @@ The random forest algorhytms has been use to successfully discriminate the two d
 </p>    
 
 ## Introduction
-The southern hawker or blue hawker (*Aeshna cyanea*) is a large and gaudy hawker, its dark body inlaid with birght nuggets of apple-green and sky-blue. These dragonflies mainly inhabit well-vegetated, small ponds and garden ponds, but they wander widely, and they are often seen in gardens and open woodland. The common hawker (*Aeshna juncea*) can be considered the archetypal hawker, large and dark, marked with yellow to bluish spots and bands. Its habitat is largerly restricted to acidic heathy lakes but can be found in most  types of standing water at higher altitude. 
+The southern hawker or blue hawker (*Aeshna cyanea*) is a large and gaudy hawker, its dark body inlaid with bright nuggets of apple-green and sky-blue. These dragonflies mainly inhabit well-vegetated small ponds and garden ponds, but they wander widely and they are often seen in gardens and open woodland. The common hawker (*Aeshna juncea*) can be considered the archetypal hawker, large and dark, marked with yellow to bluish spots and bands. Its habitat is largerly restricted to acidic heathy lakes but can be found in most  types of standing water at higher altitude. 
 
 ## Material and methods
-* R Studio verion: 3.6.3
+* R Studio version: 3.6.3
 * Packages: 
-    * occurences download: [```spocc```](https://cran.r-project.org/web/packages/spocc/spocc.pdf)
+    * occurrences download: [```spocc```](https://cran.r-project.org/web/packages/spocc/spocc.pdf)
     * data cleaning: [```CoordinateCleaner```](https://cran.r-project.org/web/packages/CoordinateCleaner/CoordinateCleaner.pdf)
     * data extraction: [```rgdal```](https://cran.r-project.org/web/packages/rgdal/rgdal.pdf), [```raster```](https://cran.r-project.org/web/packages/raster/raster.pdf),
     [```sp```](https://cran.r-project.org/web/packages/sp/sp.pdf)
@@ -59,20 +59,20 @@ The southern hawker or blue hawker (*Aeshna cyanea*) is a large and gaudy hawker
 * [corine land cover IV level](https://land.copernicus.eu/pan-european/corine-land-cover)
   
 ## [The dataset](https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_analysis/01_aeshna_juncea_cyanea_occurences_download.R)
-The function ```occ``` within the ```spocc``` package has been used to retrieve 5000 occurrences for Aeshna cyanea and 5000 entryes for Aeshna juncea from the European contintent. A. cyanea dataset feature 112 variables while A. juncea 140. Both dataset follow [The Darwin Core](https://dwc.tdwg.org/) standard as required by GBIF. 
+The function ```occ``` within the ```spocc``` package has been used to retrieve 5000 occurrences for *Aeshna cyanea* and 5000 entries for *Aeshna juncea* from the European continent. *A. cyanea* dataset feature 112 variables while *A. juncea* 140. Both datasets follow [The Darwin Core](https://dwc.tdwg.org/) standard as required by GBIF. 
 
 ## [Data cleaning](https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_analysis/02_aeshna_juncea_cyanea_data_cleaning.R)
 ### Coordinates
-Since occurences coordinates will be used to extract environmental and climatic data from raster our priority is to check the reliability of registered positions. The function 
-```clean_coordinates``` has been used to flagging of common spatial and temporal errors. The function flag and exclude records assigned to country or province centroid, the open ocean, the headquarters of the Global Biodiversity Information Facility, urban areas or the location of biodiversity institutions. To furtherly increase data quality observations with more than 1000 m of coordinate uncertainty have been discarded. 
+Since occurrences coordinates will be used to extract environmental and climatic data from raster our priority is to check the reliability of registered positions. The function 
+```clean_coordinates``` has been used to flagging of common spatial and temporal errors. The function flags and excludes records assigned to country or province centroid, the open ocean, the headquarters of the Global Biodiversity Information Facility, urban areas or the location of biodiversity institutions. Records with more than 1000 m of coordinate uncertainty have been discarded to increase data qualtiy.
 
 ### Geographical region
-The project is focused to discriminate species across the alpine region. Thus only occurrences falling into boundaries of Austria, Belgium, France, Germany, Italy , Luxembourg, Netherlands, Slovenia and Switzerland have been retained.
+The project is focused to discriminate species across the Alpine region. Thus only occurrences that have been retained are those falling into boundaries of Austria, Belgium, France, Germany, Italy , Luxembourg, Netherlands, Slovenia and Switzerland.
 
 ![](Aeshna_images/aeshnid_map.png)
 
 ### Selecting variables
-Only the following variable of the original [Darwin Core](https://dwc.tdwg.org/) format have been considered usefull for the project goal. At the end of the data cleaning process data size has been reduced to 1640 entries.
+Only the following variables of the original [Darwin Core](https://dwc.tdwg.org/) format have been considered useful for the project goal. At the end of the data cleaning process, data size has been reduced to 373 entries.
   
 | Variable      | Description   |
 | ------------- | ------------- |
@@ -90,7 +90,7 @@ Only the following variable of the original [Darwin Core](https://dwc.tdwg.org/)
 | ```endDayOfYear```  | The latest integer day of the year on which the Event occurred  | 
 
 ## [Data extraction](https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_analysis/03_aeshna_juncea_cyanea_data_extraction.R)
-Data extraction from rasters has been carryed over using the ```raster``` function on previously loaded data. Bioclimatic variables are derived from the monthly temperature and rainfall values in order to generate more biologically meaningful variables (30 arc-seconds spatial resolution - Km<sup>2</sup>). Land cover (100 m spatial resolution  comes from the 2018 Corine Land Cover. CLC is referring to a European programme establishing a computerised inventory on land cover of the 27 EC member states and other European countries.
+Data extraction from rasters has been carried over using the ```raster``` function on previously loaded data. Bioclimatic variables are derived from the monthly temperature and rainfall values in order to generate more biologically meaningful variables (30 arc-seconds spatial resolution - Km<sup>2</sup>). Land cover (100 m spatial resolution)  comes from the 2018 Corine Land Cover. CLC is referring to a European program establishing a computerized inventory on land cover of the 27 EC member states and other European countries.
 
 |Variable | Wordclim name    | Description|
 |---------|-----|-----|
@@ -118,15 +118,15 @@ Data extraction from rasters has been carryed over using the ```raster``` functi
 
 ## Feature engineering and data editing
 To better describe the ecology of the two species some variables have been edited/engineered:
-* **Aridity index** (```ai```): the aridity index has been calculated using the formula proposed by De Martonne. The index values have been splitted according climate type (```ai_climate```).
-* **CLC value**: the value of the Corine Land Cover habitat has been converted according land cover type (```CLC_hab```).
-* **Flight season**(```season```): to describe occurrences within monthly observations, days (```day```) have been grouped according period frome the ealiest to the latest week of the month.
-* **Month**: this variable (```month```) has been converted from numerical to factor (```Month```) to look at frequency of occurrences along time.
+* **Aridity index** (```ai```): the aridity index has been calculated using the formula proposed by De Martonne. The index values have been splitted according to climate type (```ai_climate```).
+* **CLC value**: the value of the Corine Land Cover habitat has been converted according to land cover type (```CLC_hab```).
+* **Flight season**(```season```): to describe occurrences within monthly observations, days (```day```) have been grouped by flight period, from the earliest to the latest week of the month.
+* **Month**: this variable (```month```) has been converted from numerical to factor (```Month```) to look at frequency of occurrences.
 
 ## Exploratory data analysis
 #### [Summary statistics](https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_analysis/04_aeshna_juncea_cyanea_summary_statistics.R)
 
-Descriptive statistics calculated for numerical variables
+Descriptive statistics have been calculated for numerical variables
 |Variable |n    |min    |1st qrt.          | median|mean   |3rd qrt.          |max   |range |sd       |var     |CV       |
 |---------|-----|-------|------------------|-------|-------|------------------|------|------|---------|--------|---------|
 |longitude|308  |1.56   |9.84              |10.18  |10.35  |11.75             |14.65 |13.09 |2.29     |5.23    |0.22     |
@@ -155,34 +155,34 @@ Descriptive statistics calculated for numerical variables
 |racoq    |308  |82     |161.75            |183.5  |207.93 |255.25            |477   |395   |76.81    |5899.91 |0.37     |
 |ai       |308  |36.49  |42.91             |66.57  |73.62  |92.99             |164.71|128.22|31.47    |990.12  |0.43     |
 
-Plot describing data distribution of the two species among months. The two species show a similar flight time-span (first plot). The violin plot describe how A. juncea occurences are more related to alpie altitude.
+Plot describing data distribution of the two species among months. The two species show a similar flight timespan (first plot). The violin plot describe how *A. juncea* occurrences are more related to Alpine altitude.
 
 <p float="center">
 <img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_month_barplot.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_month_barplot.png" width="450" height="450" />      
 <img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_elevation_violin.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_elevation_violin.png" width="450" height="450" />    
 </p>
  
-The barplot show how A. cyanea has more clear preferences for habitat related to temperate still water or even more dry situations. On the other hand A. juncea prefers moors and peat bogs.
+The barplot show how *A. cyanea* has more clear preferences for habitat related to temperate still water or even more dry situations. On the other hand *A. juncea* prefers moors and peat bogs.
  
 <p float="center">
 <img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_clc_barplot.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_clc_barplot.png" width="470" height="470" />   
 <img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_isothermality_kernel.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_isothermality_kernel.png" width="470" height="470" />    
 </p>    
 
-The correlogram shomws both negative and positive high correlation coefficients for some couples of variables. 
+The correlogram shows both negative and positive high correlation coefficients for some couples of variables. 
 
 <p float="center">
 <img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_correlogram.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_correlogram.png" width="800" height="800" />    
 </p>    
 
 ## Model building
-Since some variables showed high correlation coeffiencent, performance of choosen models may be biased. Variable with  correlation coefficient higher than 0.75 have been discarded. Test data (60% of the whole dataset, 220 observations) have been fitted to three different classification algorythms:
+Since some variables showed high correlation coefficient, models performances may be biased. Variables with  correlation coefficient higher than 0.75 have been discarded. Test data (60% of the whole dataset, 220 observations) has been fitted to three different classification algorithms:
 
 * [Linear discriminant analyis](https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_analysis/05_aeshna_juncea_cyanea_model_building_01_lda.R)
 * [Logistic ression](https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_analysis/05_aeshna_juncea_cyanea_model_building_02_logistic.R)
 * [Random forest algorythm](https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_analysis/05_aeshna_juncea_cyanea_model_building_03_random_forest.R)
 
-Model accuracy in predicting the right species have been tested on the train data and on the whole dataset. The variables used to fit the models are reported below 
+Models accuracy in predicting the right species have been tested on the train data and on the whole dataset. The variables used to fit the models are reported below 
 
 |Variable | Description|
 |---------|-----|
@@ -203,15 +203,15 @@ Model accuracy in predicting the right species have been tested on the train dat
 |```ai```      |Aridity index values according De Martonne  |
 
 ## Model accuracy
-Since accuracy values for all alrogrhytms are greater than 0.75 all model can be considered suitable to solve the classification problem. 
+Since accuracy values for all alrogrhytms are greater than 0.75, all models can be considered suitable to solve the classification problem. 
 
-| Algorythm    | Train data | Test data | Whole data |
+| Algorithm    | Train data | Test data | Whole data |
 |--------------|------------|-----------|------------|
 | LDA          |    0.85    |    0.82   |   8.82     |
 | Logistic     |    0.83    |    0.83   |   0.83     |
 |Random forest |    0.93    |    0.93   |   0.93     |
 
-The logistic model provide a good overall accuracy: ```latitude```, ```maxtwam```, ```radrm``` and ```ai``` are the most relevant feauture in classify the two species.
+The logistic model provides a good overall accuracy: ```latitude```, ```maxtwam```, ```radrm``` and ```ai``` are the most relevant feature in classify the two species.
 
 | Parameter |    Estimate | Std. Error | z value  |  Pr(> z )    |   
 |-----------|-------------|------------|----------|--------------|
@@ -227,7 +227,7 @@ The logistic model provide a good overall accuracy: ```latitude```, ```maxtwam``
 |radrq      |   -0.03940  |  0.04774   | -0.825   | 0.409229     |
 |ai         |   -0.17851  |   0.05104  | -3.498   | 0.000469 *** |
 
-The **random forest algorythm** turns to be the best among the three into correctly discriminate the two species performing with an overall accuracy of 0.93 on the test data setting at 5 the ```mtry``` parameter. According the plot the most important variable is ```maxtwam```.
+The **random forest algorythm** appears to be best among the three into correctly discriminate the two species performing with an overall accuracy of 0.93 on the test data setting at 5 the ```mtry``` parameter. According to the plot the most important variable is ```maxtwam```.
 
 <p float="center">
 <img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_rf_nodes.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_rf_nodes.png" width="400" height="400" />  
