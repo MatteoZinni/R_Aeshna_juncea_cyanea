@@ -23,7 +23,7 @@
 <!--te-->
 
 ## Project overview
-* Classify two dragonfly species (Aeshna cyanea, Aeshna juncea) using three supervised learning strategies and a set of environmental feaures used as predictors.
+* Classify two dragonfly species (*Aeshna cyanea* and *Aeshna juncea*) using three supervised learning strategies and a set of environmental feaures used as predictors.
 * Verify if the two species distribution overlaps or if they can potentially share the same habitats.
 * Scraped over 1000 occurrences data from  GBIF and using python and spocc.
 * Clean data removing occurrences with wrong coordinates using clean_coordinates
@@ -33,7 +33,7 @@
 * Linear discriminant analysis, logistic regression and random forest algorhytm to look for the best classification algorhytm
 
 ## Findings
-The random forest algorhytms has been use to successfully discriminate two dragonfly spieces according a set of climatic variables derived from raster data. The most influent variable is ```maxtwam``` and it is quite well explanatory of the ecology of the two species. *A cyanea* show a more termophilous ecology nd since the ```elevation``` parameter have been discarderd an increase of the temperature with the reduction of the thermal differences may cause the two species to compete.
+The random forest algorhytms has been use to successfully discriminate the two dragonfly spieces according a set of climatic variables derived from raster data. The most influent variable is ```maxtwam``` and it is quite well explanatory of the ecology of the two species. *A cyanea* show a more termophilous ecology nd since the ```elevation``` parameter have been discarderd an increase of the temperature with the reduction of the thermal differences may cause the two species to compete.
 
 <p float="center">
 <img src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_rf_important_var.png" data-canonical-src="https://github.com/MatteoZinni/R_Aeshna_juncea_cyanea/blob/master/Aeshna_output/Aeshna_output_figs/aeshnid_rf_important_var.png" width="500" height="500" /> 
